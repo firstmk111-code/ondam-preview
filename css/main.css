@@ -628,7 +628,7 @@ p { margin: 0; }
   .pcard-body h3 { font-size: 16.5px; }
   .pcard-body p { font-size: 13.5px; margin-top: 6px; }
   .pcard-body .badges { margin-top: 10px; gap: 5px; }
-  .pcard-body .badge { font-size: 12px; padding: 4px 9px; }
+  .pcard-body .badge { font-size: 13px; padding: 4px 10px; }
   .prod-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
   .prod-grid .prod:nth-child(3) { grid-column: 1 / -1; }
   .prod-img { height: 210px; }
