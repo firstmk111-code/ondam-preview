@@ -379,6 +379,19 @@ p { margin: 0; }
   margin: 0 auto;
 }
 .moments-strip .slot { height: 430px; border-radius: var(--radius-s); transition: transform 0.4s ease, box-shadow 0.4s ease; cursor: pointer; }
+.val-tag {
+  position: absolute;
+  left: 14px;
+  bottom: 12px;
+  z-index: 2;
+  padding: 7px 15px;
+  border-radius: 999px;
+  background: rgba(250, 247, 242, 0.93);
+  color: var(--brown-deep);
+  font-size: 14.5px;
+  font-weight: 700;
+  pointer-events: none;
+}
 .moments-strip .slot:hover { transform: scale(1.02); box-shadow: 0 16px 32px rgba(90, 66, 40, 0.2); }
 .moments-strip .slot:focus-visible { outline: 3px solid var(--teal); outline-offset: 3px; }
 .zoom-badge {
@@ -608,7 +621,18 @@ p { margin: 0; }
   .hero-sub { font-size: 17px; }
   .hero-kicker { font-size: 16px; margin-bottom: 10px; }
   .hero-logo { height: 150px; }
-  .card-grid, .steps, .prod-grid { grid-template-columns: 1fr; }
+  .steps { grid-template-columns: 1fr; }
+  .card-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+  .pcard-img { height: 150px; }
+  .pcard-body { padding: 14px 14px 16px; }
+  .pcard-body h3 { font-size: 16.5px; }
+  .pcard-body p { font-size: 13.5px; margin-top: 6px; }
+  .pcard-body .badges { margin-top: 10px; gap: 5px; }
+  .pcard-body .badge { font-size: 12px; padding: 4px 9px; }
+  .prod-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+  .prod-grid .prod:nth-child(3) { grid-column: 1 / -1; }
+  .prod-img { height: 210px; }
+  .val-tag { font-size: 13px; padding: 5px 12px; left: 10px; bottom: 9px; }
   .steps { gap: 40px; }
   .step:not(:last-child)::after { display: none; }
   .moments-strip { grid-template-columns: 1fr 1fr; }
