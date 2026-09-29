@@ -142,11 +142,11 @@ p { margin: 0; }
 .slot-hero2 { background-image: url("../images/o-h42.jpg"); }
 .slot-hero3 { background-image: url("../images/o-h43.jpg"); }
 .slot-hero4 { background-image: url("../images/o-h44.jpg"); }
-.slot-hero5 { background-image: linear-gradient(rgba(250, 243, 232, 0.06), rgba(250, 243, 232, 0.06)), url("../images/o-hero1.jpg"); }
+.slot-hero5 { background-image: linear-gradient(rgba(250, 243, 232, 0.06), rgba(250, 243, 232, 0.06)), url("../images/o-hero1-l.jpg"); }
 .slot-story, .slot-p1, .slot-p2, .slot-p3, .slot-p4,
 .slot-m1, .slot-m2, .slot-m3, .slot-m4, .slot-m5,
 .slot-g1, .slot-g2, .slot-g3 { background-size: cover; background-position: center; }
-.slot-story { background-image: url("../images/story-name.jpg"); }
+.slot-story { background-image: url("../images/story-name-l.jpg"); }
 /* 온담 이야기: 서클 마스크 안 슬라이드 (메인 전용, 슬라이드 4장) */
 .story-slide {
   position: absolute;
@@ -167,7 +167,7 @@ p { margin: 0; }
 .slot-m4 { background-image: url("../images/o-m4.jpg"); }
 .slot-m5 { background-image: url("../images/o-m5.jpg"); }
 .slot-g1 { background-image: url("../images/g-owl.jpg"); background-position: center 40%; }
-.slot-g2 { background-image: url("../images/g-wreath.jpg"); }
+.slot-g2 { background-image: url("../images/g-wreath-l.jpg"); }
 .slot-g3 { background-image: url("../images/g-najeon.jpg"); background-position: center 35%; }
 
 /* ── GNB ── */
