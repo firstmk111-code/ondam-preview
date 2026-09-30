@@ -137,12 +137,15 @@ p { margin: 0; }
 .slot-inline { color: var(--muted); font-size: 14px; }
 
 /* 슬롯별 웜톤 변주 (회색 박스 금지) */
-.slot-hero1, .slot-hero2, .slot-hero3, .slot-hero4, .slot-hero5 { background-size: cover; background-position: center; }
+.slot-hero1, .slot-hero2, .slot-hero3, .slot-hero4, .slot-hero5, .slot-hero6, .slot-hero7, .slot-hero8 { background-size: cover; background-position: center; }
 .slot-hero1 { background-image: url("../images/o-h41b.jpg"); }
-.slot-hero2 { background-image: url("../images/o-h42.jpg"); }
-.slot-hero3 { background-image: url("../images/o-h43.jpg"); }
-.slot-hero4 { background-image: url("../images/o-h44.jpg"); }
-.slot-hero5 { background-image: linear-gradient(rgba(250, 243, 232, 0.06), rgba(250, 243, 232, 0.06)), url("../images/o-hero1-l.jpg"); }
+.slot-hero2 { background-image: url("../images/o-h81.jpg"); }
+.slot-hero3 { background-image: url("../images/o-h42.jpg"); }
+.slot-hero4 { background-image: url("../images/o-h82.jpg"); }
+.slot-hero5 { background-image: url("../images/o-h43.jpg"); }
+.slot-hero6 { background-image: url("../images/o-h83.jpg"); }
+.slot-hero7 { background-image: url("../images/o-h84.jpg"); }
+.slot-hero8 { background-image: linear-gradient(rgba(250, 243, 232, 0.06), rgba(250, 243, 232, 0.06)), url("../images/o-hero1-l.jpg"); }
 .slot-story, .slot-p1, .slot-p2, .slot-p3, .slot-p4,
 .slot-m1, .slot-m2, .slot-m3, .slot-m4, .slot-m5,
 .slot-g1, .slot-g2, .slot-g3 { background-size: cover; background-position: center; }
@@ -610,10 +613,13 @@ p { margin: 0; }
   /* 모바일 크롭: 활동(손·교구·얼굴)이 보이도록 슬라이드별 조정 (온담 3차 ②) */
   /* 모바일: 얼굴+손+교구 중심의 전용 세로 크롭 이미지로 스왑 */
   .slot-hero1 { background-image: url("../images/o-h41bm.jpg"); }
-  .slot-hero2 { background-image: url("../images/o-h42m.jpg"); }
-  .slot-hero3 { background-image: url("../images/o-h43m.jpg"); }
-  .slot-hero4 { background-image: url("../images/o-h44m2.jpg"); }
-  .slot-hero5 { background-position: 62% center; }
+  .slot-hero2 { background-image: url("../images/o-h81m.jpg"); }
+  .slot-hero3 { background-image: url("../images/o-h42m.jpg"); }
+  .slot-hero4 { background-image: url("../images/o-h82m.jpg"); }
+  .slot-hero5 { background-image: url("../images/o-h43m.jpg"); }
+  .slot-hero6 { background-image: url("../images/o-h83m.jpg"); }
+  .slot-hero7 { background-image: url("../images/o-h84m.jpg"); }
+  .slot-hero8 { background-position: 62% center; }
   .gnb-logo img { height: 64px; }
   .sec { padding: 72px 0; }
   .sec-title { font-size: 29px; }
