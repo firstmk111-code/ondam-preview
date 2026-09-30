@@ -146,7 +146,7 @@ p { margin: 0; }
 .slot-story, .slot-p1, .slot-p2, .slot-p3, .slot-p4,
 .slot-m1, .slot-m2, .slot-m3, .slot-m4, .slot-m5,
 .slot-g1, .slot-g2, .slot-g3 { background-size: cover; background-position: center; }
-.slot-story { background-image: url("../images/story-name-l.jpg"); }
+.slot-story { background-image: url("../images/story-name2.jpg"); }
 /* 온담 이야기: 서클 마스크 안 슬라이드 (메인 전용, 슬라이드 4장) */
 .story-slide {
   position: absolute;
@@ -157,18 +157,18 @@ p { margin: 0; }
   transition: transform 1s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .story-slide.is-cur { transform: translateX(0); }
-.slot-p1 { background-image: url("../images/p-owl.jpg"); background-position: center 30%; }
-.slot-p2 { background-image: url("../images/p-wreath.jpg"); }
-.slot-p3 { background-image: url("../images/p-obong.jpg"); }
-.slot-p4 { background-image: url("../images/p-najeon.jpg"); }
+.slot-p1 { background-image: url("../images/p-owl-t.jpg"); background-position: center 30%; }
+.slot-p2 { background-image: url("../images/p-wreath-t.jpg"); }
+.slot-p3 { background-image: url("../images/p-obong-t.jpg"); }
+.slot-p4 { background-image: url("../images/p-najeon-t.jpg"); }
 .slot-m1 { background-image: url("../images/o-m1.jpg"); }
 .slot-m2 { background-image: url("../images/o-m2.jpg"); }
 .slot-m3 { background-image: url("../images/o-m3.jpg"); }
 .slot-m4 { background-image: url("../images/o-m4.jpg"); }
 .slot-m5 { background-image: url("../images/o-m5.jpg"); }
-.slot-g1 { background-image: url("../images/g-owl.jpg"); background-position: center 40%; }
-.slot-g2 { background-image: url("../images/g-wreath-l.jpg"); }
-.slot-g3 { background-image: url("../images/g-najeon.jpg"); background-position: center 35%; }
+.slot-g1 { background-image: url("../images/g-owl-t.jpg"); background-position: center 40%; }
+.slot-g2 { background-image: url("../images/g-wreath-l-t.jpg"); }
+.slot-g3 { background-image: url("../images/g-najeon-t.jpg"); background-position: center 35%; }
 
 /* ── GNB ── */
 .gnb {
@@ -612,7 +612,7 @@ p { margin: 0; }
   .slot-hero1 { background-image: url("../images/o-h41bm.jpg"); }
   .slot-hero2 { background-image: url("../images/o-h42m.jpg"); }
   .slot-hero3 { background-image: url("../images/o-h43m.jpg"); }
-  .slot-hero4 { background-image: url("../images/o-h44m.jpg"); }
+  .slot-hero4 { background-image: url("../images/o-h44m2.jpg"); }
   .slot-hero5 { background-position: 62% center; }
   .gnb-logo img { height: 64px; }
   .sec { padding: 72px 0; }
@@ -638,6 +638,7 @@ p { margin: 0; }
   .moments-strip { grid-template-columns: 1fr 1fr; }
   .values { grid-template-columns: 1fr; gap: 36px; }
   .moments-strip .slot { height: 220px; }
+  .slot-story { height: 300px; }
   .moments-strip .slot-m5 { grid-column: 1 / -1; }
   .sec-cta { padding: 96px 0; }
   .cta-paths { grid-template-columns: 1fr; gap: 16px; }
