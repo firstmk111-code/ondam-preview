@@ -10,18 +10,76 @@
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
 
-  // 히어로 크로스페이드 (영상 대체 슬라이드)
+  // 히어로 슬라이드: 자동 전환(5초) + 좌우 스와이프/마우스 드래그 + 점 클릭 (온담 수정요청 10/2 ①④)
+  var hero = document.getElementById("hero");
   var slides = document.querySelectorAll(".hero-slide");
   var dots = document.querySelectorAll(".hero-dots i");
   var cur = 0;
-  if (!reduced && slides.length > 1) {
-    setInterval(function () {
+  if (hero && slides.length > 1) {
+    var INTERVAL = 5000;
+    var timer = null;
+
+    function show(n) {
+      n = (n + slides.length) % slides.length;
+      if (n === cur) return;
       slides[cur].classList.remove("is-on");
       dots[cur].classList.remove("is-on");
-      cur = (cur + 1) % slides.length;
+      cur = n;
       slides[cur].classList.add("is-on");
       dots[cur].classList.add("is-on");
-    }, 5000);
+    }
+    function play() {
+      stop();
+      timer = setInterval(function () { show(cur + 1); }, INTERVAL);
+    }
+    function stop() { if (timer) { clearInterval(timer); timer = null; } }
+
+    // 점 클릭으로 해당 슬라이드 이동
+    dots.forEach(function (d, i) {
+      d.addEventListener("click", function () { show(i); play(); });
+    });
+
+    // 스와이프/드래그: 가로 이동 40px 이상이면 이전·다음 (세로 스크롤은 그대로 통과)
+    var startX = 0, startY = 0, dragging = false, moved = false;
+    function onDown(e) {
+      if (e.pointerType === "mouse" && e.button !== 0) return;
+      dragging = true; moved = false;
+      startX = e.clientX; startY = e.clientY;
+      stop();
+    }
+    function onMove(e) {
+      if (!dragging) return;
+      var dx = e.clientX - startX, dy = e.clientY - startY;
+      if (!moved && Math.abs(dx) > 10 && Math.abs(dx) > Math.abs(dy)) {
+        moved = true;
+        hero.classList.add("is-dragging");
+      }
+    }
+    function onUp(e) {
+      if (!dragging) return;
+      dragging = false;
+      var dx = e.clientX - startX;
+      if (moved && Math.abs(dx) >= 40) show(dx < 0 ? cur + 1 : cur - 1);
+      hero.classList.remove("is-dragging");
+      play();
+    }
+    hero.addEventListener("pointerdown", onDown);
+    hero.addEventListener("pointermove", onMove);
+    hero.addEventListener("pointerup", onUp);
+    hero.addEventListener("pointercancel", onUp);
+    hero.addEventListener("pointerleave", function (e) { if (dragging) onUp(e); });
+    // 드래그 중에는 링크 클릭이 따라오지 않도록
+    hero.addEventListener("click", function (e) { if (hero.classList.contains("is-dragging") || moved) { e.preventDefault(); moved = false; } }, true);
+
+    // 키보드: 히어로에 포커스된 상태에서 ←/→
+    hero.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowRight") { show(cur + 1); play(); }
+      if (e.key === "ArrowLeft") { show(cur - 1); play(); }
+    });
+
+    // 탭이 보이지 않을 때는 멈춤
+    document.addEventListener("visibilitychange", function () { document.hidden ? stop() : play(); });
+    play();
   }
 
   // 스크롤 리빌
