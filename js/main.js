@@ -1,6 +1,7 @@
 // 온담 메인 시안 v1
 (function () {
-  var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  // 모션 줄이기(prefers-reduced-motion) 예외 제거 (온담 수정요청 10/6): Windows「애니메이션 효과」꺼짐 PC에서
+  // 스크롤 리빌이 전부 생략되던 문제 → 어떤 환경에서도 모션을 동일하게 재생
 
   // GNB: 스크롤 시 배경
   var gnb = document.getElementById("gnb");
@@ -83,7 +84,7 @@
   }
 
   // 스크롤 리빌
-  if (!reduced && "IntersectionObserver" in window) {
+  if ("IntersectionObserver" in window) {
     // 화면에 들어오면 재생, 완전히 벗어나면 초기화(재진입 시 다시 재생)
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {

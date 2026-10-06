@@ -626,22 +626,8 @@ p { margin: 0; }
 .reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.7s ease, transform 0.7s ease; }
 .reveal.is-in { opacity: 1; transform: none; }
 
-@media (prefers-reduced-motion: reduce) {
-  .lightbox img { animation: none; }
-  .reveal { opacity: 1; transform: none; transition: none; }
-  .hero-slide { transition: none; }
-  .steps .step, .steps .step .step-no, .steps .step::after { opacity: 1; transform: none; transition: none; animation: none; }
-  .story-visual .slot-story { clip-path: none; transform: none; transition: none; }
-  .story-slide { transition: none; }
-  .story-dots { opacity: 1; transition: none; }
-  .reveal .sec-title, .cta-inner .cta-text h2 { clip-path: none; transition: none; }
-  .prod-grid .prod-img { clip-path: none; transition: none; }
-  .sec-cta::before { clip-path: none; transition: none; }
-  .btn::before, .gnb-cta::before { transition: none; }
-  .hero-logo .draw { animation: none; stroke-dasharray: none; stroke-dashoffset: 0; stroke-opacity: 1; }
-  .hero-logo .fillin { animation: none; fill-opacity: 1; }
-  html { scroll-behavior: auto; }
-}
+/* 모션 줄이기(prefers-reduced-motion) 예외 블록 제거 (온담 수정요청 10/6): PC의 Windows「애니메이션 효과」꺼짐 설정이
+   이 조건에 걸려 웹에서 모든 모션이 사라졌던 문제 → 어떤 환경에서도 모션을 동일하게 재생 */
 
 /* ── 반응형 ──
    기준(온담 수정요청 10/2): ≤1024 = 모바일 계열(태블릿·폴더블 813·폰) — 햄버거 메뉴 통일, 히어로 비율형 높이
@@ -774,6 +760,9 @@ p { margin: 0; }
   .step p { font-size: 12.5px; line-height: 1.45; margin-top: 6px; }
   .step:not(:last-child)::after { display: block; top: 19px; left: calc(50% + 26px); width: calc(100% - 52px); border-top-width: 2px; }
   .steps-cta { margin-top: 26px; gap: 10px; }
+  /* 온담 이야기 페이지「만드는 과정」: 모바일 세로 여유 살짝 추가 (온담 수정요청 10/6 주석 #15) */
+  .sec:not(.sec-steps):has(> .wrap > .steps) { padding: 60px 0; }
+  .sec:not(.sec-steps):has(> .wrap > .steps) .steps-cta { margin-top: 32px; }
   .steps-cta .btn { flex: 1 1 0; text-align: center; min-width: 0; }
 
   /* 활동 가치(온담 이야기·상세 기대효과): 2열, 아이콘 64px */
@@ -850,6 +839,12 @@ p { margin: 0; }
 
 /* 온담 이야기: 로고 모티프 */
 .motifs { list-style: none; margin: 30px 0 0; padding: 0; display: grid; gap: 22px; }
+/* 온담 이야기 페이지: 목록 세로 여백을 넉넉히 두고, 마지막 항목이 우측 사진 하단과 같은 선에서 끝나도록 (온담 수정요청 10/6 주석 #14) */
+@media (min-width: 1025px) {
+  .story-grid:has(.motifs) { align-items: stretch; }
+  .story-grid:has(.motifs) .story-text { display: flex; flex-direction: column; }
+  .story-grid:has(.motifs) .motifs { flex: 1; align-content: space-between; margin-top: 36px; gap: 26px; }
+}
 .motifs li { display: flex; align-items: center; gap: 18px; }
 .motifs h3 { font-size: 18.5px; color: var(--brown-deep); }
 .motifs p { margin-top: 3px; font-size: 16px; color: var(--muted); }
