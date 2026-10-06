@@ -487,19 +487,28 @@ p { margin: 0; }
   border-top: 2.5px dashed #CBB79D;
 }
 
-/* 단계 순차 모션: 번호가 떠오르고 → 점선이 그려짐 */
-.steps .step { opacity: 0; transform: translateY(26px); transition: opacity 0.55s ease, transform 0.55s ease; }
-.steps .step .step-no { transform: scale(0.5); transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); }
-.steps .step::after { transform: scaleX(0); transform-origin: left center; transition: transform 0.45s ease-out; }
-.steps .step:nth-child(2) { transition-delay: 0.3s; }
-.steps .step:nth-child(2) .step-no { transition-delay: 0.3s; }
-.steps .step:nth-child(3) { transition-delay: 0.6s; }
-.steps .step:nth-child(3) .step-no { transition-delay: 0.6s; }
-.steps .step:nth-child(1)::after { transition-delay: 0.35s; }
-.steps .step:nth-child(2)::after { transition-delay: 0.65s; }
+/* 단계 순차 모션: 번호가 떠오르고 → 불이 하나씩 켜지고 → 점선이 그려짐 (온담 수정요청 10/6 주석 #9) */
+.steps .step { --d: 0s; opacity: 0; transform: translateY(26px); transition: opacity 0.55s ease var(--d), transform 0.55s ease var(--d); }
+.steps .step:nth-child(2) { --d: 0.3s; }
+.steps .step:nth-child(3) { --d: 0.6s; }
+.steps .step .step-no {
+  background: #D9CDBB; box-shadow: none; transform: scale(0.5);
+  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) var(--d),
+              background-color 0.3s ease calc(var(--d) + 0.3s),
+              box-shadow 0.3s ease calc(var(--d) + 0.3s);
+}
+.steps .step::after { transform: scaleX(0); transform-origin: left center; transition: transform 0.45s ease-out calc(var(--d) + 0.45s); }
 .steps.is-in .step { opacity: 1; transform: none; }
-.steps.is-in .step .step-no { transform: scale(1); }
+.steps.is-in .step .step-no {
+  background: var(--accent); box-shadow: 0 10px 22px rgba(151, 73, 31, 0.25); transform: scale(1);
+  animation: step-light 0.8s ease-out calc(var(--d) + 0.3s) both;
+}
 .steps.is-in .step::after { transform: scaleX(1); }
+@keyframes step-light {
+  0%   { box-shadow: 0 0 0 0 rgba(224, 98, 26, 0), 0 10px 22px rgba(151, 73, 31, 0); filter: brightness(1); }
+  30%  { box-shadow: 0 0 0 9px rgba(224, 98, 26, 0.32), 0 10px 22px rgba(151, 73, 31, 0.25); filter: brightness(1.2); }
+  100% { box-shadow: 0 0 0 20px rgba(224, 98, 26, 0), 0 10px 22px rgba(151, 73, 31, 0.25); filter: brightness(1); }
+}
 .steps-cta { margin-top: 48px; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
 
 /* ── 6. 대표 제품 ── */
@@ -576,11 +585,11 @@ p { margin: 0; }
 .sec-cta .btn-primary { background: #FFFDF8; color: var(--brown-deep); --fill: #F1E6D4; }
 .sec-cta .btn-primary:hover { box-shadow: 0 14px 28px rgba(20, 12, 5, 0.3); }
 
-/* 교구·프로그램 목록 하단 밴드 「기관 상황에 맞춰 구성해 드릴까요?」: 밝은 베이지 교구 연출컷 (온담 수정요청 10/2 ②)
-   사진 자체가 좌측 여백·우측 교구 구도라 어두운 오버레이 없이 텍스트를 좌측에 둔다 */
+/* 교구·프로그램 목록 하단 밴드 「기관 상황에 맞춰 구성해 드릴까요?」: 아이보리 수채 잎사귀 배너 (온담 수정요청 10/6 주석 #8)
+   밝은 배경이라 어두운 오버레이 없이 텍스트를 좌측에 둔다 */
 .sec-cta-consult { background: var(--ivory-deep); padding: 140px 0; }
 .sec-cta-consult::before {
-  background-image: linear-gradient(90deg, rgba(247, 241, 232, 0.55) 0%, rgba(247, 241, 232, 0) 48%), url("../images/cta-consult2.jpg");
+  background-image: linear-gradient(90deg, rgba(247, 241, 232, 0.55) 0%, rgba(247, 241, 232, 0) 48%), url("../images/cta-consult3.jpg");
   background-position: center;
 }
 .sec-cta-consult .cta-inner { flex-direction: column; align-items: flex-start; gap: 26px; }
@@ -609,7 +618,7 @@ p { margin: 0; }
   .lightbox img { animation: none; }
   .reveal { opacity: 1; transform: none; transition: none; }
   .hero-slide { transition: none; }
-  .steps .step, .steps .step .step-no, .steps .step::after { opacity: 1; transform: none; transition: none; }
+  .steps .step, .steps .step .step-no, .steps .step::after { opacity: 1; transform: none; transition: none; animation: none; }
   .story-visual .slot-story { clip-path: none; transform: none; transition: none; }
   .reveal .sec-title, .cta-inner .cta-text h2 { clip-path: none; transition: none; }
   .prod-grid .prod-img { clip-path: none; transition: none; }
@@ -745,7 +754,8 @@ p { margin: 0; }
   /* 도입 3단계: 가로 배치 유지 (1 → 2 → 3이 한눈에), 번호+짧은 제목 중심 */
   .steps { grid-template-columns: repeat(3, 1fr); gap: 6px; }
   .step { padding: 0 2px; }
-  .step-no { width: 40px; height: 40px; font-size: 17px; margin-bottom: 10px; box-shadow: 0 6px 14px rgba(151, 73, 31, 0.22); }
+  .step-no { width: 40px; height: 40px; font-size: 17px; margin-bottom: 10px; }
+  .steps.is-in .step .step-no { box-shadow: 0 6px 14px rgba(151, 73, 31, 0.22); }
   .step h3 { font-size: 15px; line-height: 1.3; }
   .step p { font-size: 12.5px; line-height: 1.45; margin-top: 6px; }
   .step:not(:last-child)::after { display: block; top: 19px; left: calc(50% + 26px); width: calc(100% - 52px); border-top-width: 2px; }
@@ -778,7 +788,7 @@ p { margin: 0; }
   .cta-path .btn { display: block; text-align: center; }
   .sec-cta-consult { padding: 60px 0 150px; }
   .sec-cta-consult::before {
-    background-image: linear-gradient(180deg, rgba(247, 241, 232, 0.78) 0%, rgba(247, 241, 232, 0.1) 62%), url("../images/cta-consult2-m.jpg");
+    background-image: linear-gradient(180deg, rgba(247, 241, 232, 0.78) 0%, rgba(247, 241, 232, 0.1) 62%), url("../images/cta-consult3-m.jpg");
     background-position: center 70%;
   }
   .sec-cta-consult .cta-inner { gap: 16px; }
@@ -879,7 +889,9 @@ p { margin: 0; }
 /* 문의 보내기: 테두리·왼쪽 점 없는 오렌지 라운드 버튼, 높이 축소 */
 .btn-plain { padding: 13px 32px; border: none; }
 .btn-plain::before { display: none; }
-.contact-grid { display: grid; grid-template-columns: 1.35fr 1fr; gap: 64px; align-items: start; }
+/* 문의 폼과 우측 「이런 문의를 받고 있어요」 박스가 같은 높이로 끝나도록 (온담 수정요청 10/6 주석 #10) */
+.contact-grid { display: grid; grid-template-columns: 1.35fr 1fr; gap: 64px; align-items: stretch; }
+.contact-side { display: flex; flex-direction: column; }
 .contact-form { display: grid; gap: 22px; }
 .form-row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
 .field { display: block; }
@@ -900,8 +912,8 @@ p { margin: 0; }
 .form-submit { justify-self: start; }
 .form-note { font-size: 14.5px; color: var(--muted); }
 .contact-side h2 { font-size: 23px; color: var(--brown-deep); margin-bottom: 20px; }
-.contact-types { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; }
-.contact-types li { background: #FFFDF9; border: 1px solid var(--line); border-radius: var(--radius-s); padding: 18px 20px; }
+.contact-types { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; flex: 1; grid-auto-rows: 1fr; }
+.contact-types li { background: #FFFDF9; border: 1px solid var(--line); border-radius: var(--radius-s); padding: 18px 20px; display: flex; flex-direction: column; justify-content: center; }
 .contact-types h3 { font-size: 17.5px; color: var(--brown-deep); }
 .contact-types p { margin-top: 5px; font-size: 15.5px; color: var(--muted); }
 .contact-direct { margin-top: 28px; padding-top: 22px; border-top: 1px solid var(--line); }
