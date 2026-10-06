@@ -580,8 +580,8 @@ p { margin: 0; }
    사진 자체가 좌측 여백·우측 교구 구도라 어두운 오버레이 없이 텍스트를 좌측에 둔다 */
 .sec-cta-consult { background: var(--ivory-deep); padding: 140px 0; }
 .sec-cta-consult::before {
-  background-image: linear-gradient(90deg, rgba(247, 241, 232, 0.55) 0%, rgba(247, 241, 232, 0) 48%), url("../images/cta-consult.jpg");
-  background-position: center 92%;
+  background-image: linear-gradient(90deg, rgba(247, 241, 232, 0.55) 0%, rgba(247, 241, 232, 0) 48%), url("../images/cta-consult2.jpg");
+  background-position: center;
 }
 .sec-cta-consult .cta-inner { flex-direction: column; align-items: flex-start; gap: 26px; }
 .sec-cta-consult .cta-text { max-width: 640px; }
@@ -593,7 +593,7 @@ p { margin: 0; }
 /* ── 푸터 ── */
 .footer { background: #332A21; color: #CBBFAF; padding: 64px 0 48px; }
 .footer-inner { display: grid; grid-template-columns: 1fr auto; gap: 18px 40px; align-items: start; }
-.footer-logo { height: 144px; }
+.footer-logo { height: 144px; margin-left: -41px; } /* 로고 PNG 좌측 투명 여백(23%) 보정 → 하단 텍스트와 좌측선 일치 */
 .footer-tag { margin-top: 14px; font-size: 15.5px; color: #A79A87; }
 .footer-menu { display: flex; gap: 28px; font-size: 16px; }
 .footer-menu a { color: #D8CCBA; transition: color 0.2s ease; }
@@ -668,7 +668,7 @@ p { margin: 0; }
   .cta-text h2 { font-size: 31px; }
   .cta-path { padding: 26px 26px; }
   .footer { padding: 52px 0 40px; }
-  .footer-logo { height: 120px; }
+  .footer-logo { height: 120px; margin-left: -34px; }
 }
 
 @media (max-width: 640px) {
@@ -778,8 +778,8 @@ p { margin: 0; }
   .cta-path .btn { display: block; text-align: center; }
   .sec-cta-consult { padding: 60px 0 150px; }
   .sec-cta-consult::before {
-    background-image: linear-gradient(180deg, rgba(247, 241, 232, 0.78) 0%, rgba(247, 241, 232, 0.1) 62%), url("../images/cta-consult-m.jpg");
-    background-position: center 88%;
+    background-image: linear-gradient(180deg, rgba(247, 241, 232, 0.78) 0%, rgba(247, 241, 232, 0.1) 62%), url("../images/cta-consult2-m.jpg");
+    background-position: center 70%;
   }
   .sec-cta-consult .cta-inner { gap: 16px; }
   .sec-cta-consult .btn-lg { align-self: stretch; text-align: center; }
@@ -787,7 +787,7 @@ p { margin: 0; }
   /* 푸터 */
   .footer { padding: 36px 0 28px; }
   .footer-inner { grid-template-columns: 1fr; gap: 14px; }
-  .footer-logo { height: 96px; }
+  .footer-logo { height: 96px; margin-left: -27px; }
   .footer-tag { font-size: 14px; margin-top: 8px; }
   .footer-menu { gap: 18px; font-size: 15px; }
   .footer-info { font-size: 13px; margin-top: 16px; padding-top: 16px; }
@@ -867,6 +867,18 @@ p { margin: 0; }
 .how p { margin-top: 7px; font-size: 15.5px; color: var(--muted); }
 
 /* 기관 문의 */
+/* FAQ 블록 중앙 정렬 (온담 수정요청 10/6) — 타이틀은 와이프용 fit-content라 margin auto */
+.sec-faq .sec-head { margin-left: auto; margin-right: auto; text-align: center; }
+.sec-faq .sec-title { margin-left: auto; margin-right: auto; }
+.sec-faq .faq-list { margin-left: auto; margin-right: auto; }
+/* 문의 영역: 상단 배너와 같은 진한 아이보리 바탕 + 폼·안내 카드로 정리 */
+.sec-contact { background: var(--ivory-deep); border-top: 1px solid var(--line); }
+.sec-contact .contact-form { background: #FFFDF9; border: 1px solid var(--line); border-radius: var(--radius); padding: 36px 36px 32px; box-shadow: 0 10px 30px rgba(90, 66, 40, 0.06); }
+.sec-contact .field input, .sec-contact .field select, .sec-contact .field textarea { background: var(--ivory); }
+.sec-contact .contact-types li { background: #FFFDF9; }
+/* 문의 보내기: 테두리·왼쪽 점 없는 오렌지 라운드 버튼, 높이 축소 */
+.btn-plain { padding: 13px 32px; border: none; }
+.btn-plain::before { display: none; }
 .contact-grid { display: grid; grid-template-columns: 1.35fr 1fr; gap: 64px; align-items: start; }
 .contact-form { display: grid; gap: 22px; }
 .form-row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
@@ -954,6 +966,8 @@ p { margin: 0; }
   .contact-side h2 { font-size: 19px; margin-bottom: 12px; }
   .contact-direct { margin-top: 20px; padding-top: 16px; }
   .detail-grid { gap: 22px; }
+  .sec-contact .contact-form { padding: 20px 16px 18px; border-radius: 14px; }
+  .btn-plain { width: 100%; text-align: center; }
   .detail-photo .slot { height: 250px; }
   .spec-list { margin-top: 16px; }
   .spec-list li { padding: 11px 2px; font-size: 15px; gap: 12px; }
