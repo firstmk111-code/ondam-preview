@@ -345,6 +345,18 @@ p { margin: 0; }
   clip-path: circle(75% at 50% 50%);
   transform: scale(1);
 }
+/* 온담 이야기 슬라이드: 넘김 점 표시 + 스와이프/드래그 (온담 수정요청 10/6 주석 #11) */
+.story-visual { touch-action: pan-y; }
+.story-visual .slot-story { cursor: grab; }
+.story-visual.is-dragging { user-select: none; }
+.story-visual.is-dragging .slot-story { cursor: grabbing; }
+.story-dots { position: absolute; bottom: 18px; left: 50%; transform: translateX(-50%); z-index: 3; display: flex; gap: 6px; opacity: 0; transition: opacity 0.6s ease 1s; }
+.story-visual.is-in .story-dots { opacity: 1; }
+.story-dots i { position: relative; width: 13px; height: 24px; cursor: pointer; transition: width 0.3s ease; }
+.story-dots i::before { content: ""; position: absolute; left: 2px; right: 2px; top: 50%; height: 9px; transform: translateY(-50%); border-radius: 999px; background: rgba(255, 250, 242, 0.5); box-shadow: 0 1px 4px rgba(40, 26, 14, 0.28); transition: background-color 0.3s ease; }
+.story-dots i.is-on { width: 30px; }
+.story-dots i.is-on::before { background: #FFFDF8; }
+.story-dots i:focus-visible { outline: 2px solid #FFFDF8; outline-offset: 2px; border-radius: 999px; }
 
 /* ── 3. 교구·프로그램 ── */
 .sec-program { background: #FFFDF9; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
@@ -546,7 +558,7 @@ p { margin: 0; }
   content: "";
   position: absolute;
   inset: 0;
-  background-image: linear-gradient(rgba(58, 38, 20, 0.62), rgba(58, 38, 20, 0.62)), url("../images/o-cta.jpg");
+  background-image: linear-gradient(rgba(58, 38, 20, 0.62), rgba(58, 38, 20, 0.62)), url("../images/o-cta2.jpg");
   background-size: cover;
   background-position: center;
   clip-path: inset(100% 0 0 0);
@@ -620,6 +632,8 @@ p { margin: 0; }
   .hero-slide { transition: none; }
   .steps .step, .steps .step .step-no, .steps .step::after { opacity: 1; transform: none; transition: none; animation: none; }
   .story-visual .slot-story { clip-path: none; transform: none; transition: none; }
+  .story-slide { transition: none; }
+  .story-dots { opacity: 1; transition: none; }
   .reveal .sec-title, .cta-inner .cta-text h2 { clip-path: none; transition: none; }
   .prod-grid .prod-img { clip-path: none; transition: none; }
   .sec-cta::before { clip-path: none; transition: none; }
@@ -774,9 +788,11 @@ p { margin: 0; }
   .story-text .lead { font-size: 15px; margin-top: 12px; }
   .story-slogan { font-size: 16px; margin-top: 12px; }
   .slot-story { height: 240px; }
+  .story-dots { bottom: 10px; }
 
   /* 문의 CTA */
   .sec-cta { padding: 56px 0; }
+  .sec-cta::before { background-position: 62% center; } /* 스트링아트 카드가 가운데 오도록 */
   .cta-inner { gap: 20px; }
   .cta-text h2 { font-size: 23px; line-height: 1.35; }
   .cta-text p { font-size: 15px; margin-top: 10px; }

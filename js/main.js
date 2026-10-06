@@ -175,26 +175,81 @@
   form.addEventListener("submit", function (e) { e.preventDefault(); });
 })();
 
-// 온담 이야기: 서클 안 슬라이드 (4.5초 간격, 좌로 밀기)
+// 온담 이야기: 서클 안 슬라이드 (4.5초 간격, 밀기) + 점 표시·클릭 + 스와이프/드래그 (온담 수정요청 10/6 주석 #11)
+// ※ 모션 줄이기 설정에서도 슬라이드는 돌고(전환만 즉시), 점·드래그로 직접 넘길 수 있다
 (function () {
   var box = document.getElementById("storySlides");
   if (!box) return;
+  var wrap = box.parentNode; // .story-visual
   var slides = [].slice.call(box.querySelectorAll(".story-slide"));
+  var dots = [].slice.call(wrap.querySelectorAll(".story-dots i"));
   if (slides.length < 2) return;
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-  var i = 0;
-  setInterval(function () {
-    var cur = slides[i];
-    var next = slides[(i + 1) % slides.length];
-    // 다음 슬라이드를 오른쪽에 스냅(무전환)해 둔 뒤 함께 밀어 넣기
+  var INTERVAL = 4500;
+  var i = 0, timer = null;
+
+  function go(n, dir) {
+    n = (n + slides.length) % slides.length;
+    if (n === i) return;
+    dir = dir || (n > i ? 1 : -1);
+    var cur = slides[i], next = slides[n];
+    // 다음 슬라이드를 들어올 쪽에 스냅(무전환)해 둔 뒤 함께 밀어 넣기
     next.style.transition = "none";
-    next.style.transform = "translateX(100%)";
+    next.style.transform = "translateX(" + (dir > 0 ? 100 : -100) + "%)";
     next.getBoundingClientRect();
     next.style.transition = "";
     cur.classList.remove("is-cur");
-    cur.style.transform = "translateX(-100%)";
+    cur.style.transform = "translateX(" + (dir > 0 ? -100 : 100) + "%)";
     next.classList.add("is-cur");
     next.style.transform = "translateX(0)";
-    i = (i + 1) % slides.length;
-  }, 4500);
+    if (dots[i]) dots[i].classList.remove("is-on");
+    if (dots[n]) dots[n].classList.add("is-on");
+    i = n;
+  }
+  function play() { stop(); timer = setInterval(function () { go(i + 1, 1); }, INTERVAL); }
+  function stop() { if (timer) { clearInterval(timer); timer = null; } }
+
+  // 점 클릭/키보드로 해당 사진 이동
+  dots.forEach(function (d, k) {
+    d.addEventListener("click", function () { go(k); play(); });
+    d.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); go(k); play(); }
+      if (e.key === "ArrowRight") { go(i + 1, 1); play(); }
+      if (e.key === "ArrowLeft") { go(i - 1, -1); play(); }
+    });
+  });
+
+  // 스와이프/드래그: 가로 이동 40px 이상이면 이전·다음 (세로 스크롤은 그대로 통과)
+  var startX = 0, startY = 0, dragging = false, moved = false;
+  function onDown(e) {
+    if (e.pointerType === "mouse" && e.button !== 0) return;
+    if (e.target.closest && e.target.closest(".story-dots")) return;
+    dragging = true; moved = false;
+    startX = e.clientX; startY = e.clientY;
+    stop();
+  }
+  function onMove(e) {
+    if (!dragging) return;
+    var dx = e.clientX - startX, dy = e.clientY - startY;
+    if (!moved && Math.abs(dx) > 10 && Math.abs(dx) > Math.abs(dy)) {
+      moved = true;
+      wrap.classList.add("is-dragging");
+    }
+  }
+  function onUp(e) {
+    if (!dragging) return;
+    dragging = false;
+    var dx = e.clientX - startX;
+    if (moved && Math.abs(dx) >= 40) go(dx < 0 ? i + 1 : i - 1, dx < 0 ? 1 : -1);
+    wrap.classList.remove("is-dragging");
+    play();
+  }
+  wrap.addEventListener("pointerdown", onDown);
+  wrap.addEventListener("pointermove", onMove);
+  wrap.addEventListener("pointerup", onUp);
+  wrap.addEventListener("pointercancel", onUp);
+  wrap.addEventListener("pointerleave", function (e) { if (dragging) onUp(e); });
+
+  // 탭이 보이지 않을 때는 멈춤
+  document.addEventListener("visibilitychange", function () { document.hidden ? stop() : play(); });
+  play();
 })();
