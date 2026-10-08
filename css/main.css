@@ -622,6 +622,11 @@ p { margin: 0; }
 .footer-menu a:hover { color: #FFF9F3; }
 .footer-info { grid-column: 1 / -1; margin-top: 26px; padding-top: 26px; border-top: 1px solid rgba(210, 196, 172, 0.2); font-size: 14.5px; color: #948875; }
 .footer-copy { grid-column: 1 / -1; font-size: 14px; color: #6E6353; }
+/* 푸터 사업자 정보 (온담 수정요청 10/8 주석 #15) — 항목 사이 가는 구분선 */
+.footer-info { display: flex; flex-wrap: wrap; gap: 6px 0; }
+.footer-info span:not(:last-child)::after { content: ""; display: inline-block; width: 1px; height: 11px; margin: 0 14px; background: rgba(210, 196, 172, 0.35); vertical-align: -1px; }
+.footer-info a { color: inherit; }
+.footer-info a:hover { color: #FFF9F3; }
 
 /* ── 스크롤 리빌 ── */
 .reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.7s ease, transform 0.7s ease; }
@@ -817,6 +822,8 @@ p { margin: 0; }
   .footer-tag { font-size: 14px; margin-top: 8px; }
   .footer-menu { gap: 18px; font-size: 15px; }
   .footer-info { font-size: 13px; margin-top: 16px; padding-top: 16px; }
+  .footer-info { flex-direction: column; gap: 4px; }
+  .footer-info span::after { display: none !important; }
   .footer-copy { font-size: 13px; }
   .lightbox { padding: 16px; }
   .lightbox-close { top: 14px; right: 14px; width: 44px; height: 44px; }
@@ -901,6 +908,8 @@ p { margin: 0; }
 .cat-chip.on { background: var(--accent); border-color: var(--accent); color: #FFF9F3; }
 .pl-grid { grid-template-columns: repeat(3, 1fr); }
 .pl-card .pcard-img { height: 250px; background-size: cover; background-position: center; }
+/* 메인 홈 교구 카드: 교구·프로그램 페이지와 같은 사진(인라인 지정)이 칸에 맞게 채워지도록 (온담 수정요청 10/8 주석 #14) */
+#program .pcard-img { background-size: cover; background-position: center; }
 .pl-card[hidden] { display: none; }
 
 /* 교구 상세 */
