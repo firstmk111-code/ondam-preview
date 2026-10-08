@@ -277,6 +277,7 @@ p { margin: 0; }
   color: rgba(255, 249, 243, 0.92);
 }
 .hero-sub { margin-top: 20px; font-size: 20px; color: rgba(255, 251, 244, 0.92); text-shadow: 0 2px 10px rgba(30, 20, 10, 0.3); }
+.hero-sub .br-m { display: none; } /* 모바일 전용 줄바꿈 (온담 수정요청 10/8 주석 #1) */
 .hero-btns { margin-top: 42px; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
 .hero-dots { position: absolute; bottom: 34px; left: 50%; transform: translateX(-50%); z-index: 3; display: flex; gap: 6px; }
 /* 점 = 버튼 (탭 영역 24px 확보, 보이는 점은 9px) */
@@ -700,6 +701,7 @@ p { margin: 0; }
   .sec-title { font-size: 24px; line-height: 1.32; }
   .sec-desc { font-size: 14.5px; margin-top: 10px; }
   .sec-more { margin-top: 26px; }
+  .sec-product .sec-more { margin-top: 38px; } /* 스마트스토어 버튼 살짝 아래로 (온담 수정요청 10/8 주석 #2) */
   .btn { padding: 12px 20px 12px 30px; font-size: 15px; line-height: 1.4; }
   .btn-lg { padding: 13px 24px 13px 34px; font-size: 15.5px; }
   .btn::before, .gnb-cta::before { left: 12px; }
@@ -718,6 +720,7 @@ p { margin: 0; }
   .hero-btns { margin-top: 34px; gap: 10px; flex-wrap: nowrap; } /* 버튼 가로 배치·가운데 정렬 (온담 수정요청 10/7 ①) */
   .hero-btns .btn { padding: 12px 18px 12px 30px; font-size: 14.5px; white-space: nowrap; }
   .hero-dots { bottom: 28px; }
+  .hero-sub .br-m { display: inline; } /* 손을 움직이고, 생각을 더하며, / 하나의 작품을… / 인지와 소근육을… / 활동의 즐거움을… (주석 #1) */
   /* 모바일: 얼굴+손+교구 중심의 전용 세로 크롭 이미지로 스왑 (온담 3차 ②) */
   .slot-hero1 { background-image: url("../images/o-h41bm.jpg"); }
   .slot-hero2 { background-image: url("../images/o-h81m.jpg"); }
@@ -742,6 +745,9 @@ p { margin: 0; }
   .pcard-body h3 { font-size: 15.5px; }
   .pcard-body p { font-size: 13px; margin-top: 5px; line-height: 1.5; }
   .pcard-body .badges { margin-top: 9px; gap: 5px; }
+  /* 메인 교구·프로그램 카드: 시간·난이도 배지를 모든 카드에서 세로로 통일, 배지 안 줄바꿈 금지 (온담 수정요청 10/8 주석 #3) */
+  #program .pcard-body .badges { flex-direction: column; align-items: flex-start; }
+  #program .pcard-body .badge { white-space: nowrap; }
   .pcard-body .badge { font-size: 12px; padding: 3px 9px; }
   .dots i { width: 7px; height: 7px; }
 
@@ -764,6 +770,9 @@ p { margin: 0; }
   .steps-cta { margin-top: 26px; gap: 10px; }
   /* 도입 단계(메인) · 만드는 과정(온담 이야기): 모바일 세로 여백 확대 (온담 수정요청 10/7 ②④) */
   .sec-steps, .sec:has(> .wrap > .steps) { padding: 76px 0; }
+  /* 도입 단계: 1-2-3 다이어그램 위아래 세로 여백 확대 (온담 수정요청 10/8 주석 #4) */
+  .sec-steps .sec-head { margin-bottom: 44px; }
+  .sec-steps .steps-cta { margin-top: 44px; }
   .sec:not(.sec-steps):has(> .wrap > .steps) .steps-cta { margin-top: 32px; }
   .steps-cta .btn { flex: 1 1 0; text-align: center; min-width: 0; }
 
@@ -971,7 +980,7 @@ p { margin: 0; }
 }
 @media (max-width: 640px) {
   /* 서브페이지 폰 규격: 타이틀 밴드 상단 112px(헤더 아래) · 목록 2열 · 과정 2열 */
-  .page-head { min-height: 300px; padding: 112px 0 32px; } /* 교구·프로그램 / 기관 문의 상단 높이 통일: 제목 줄 수와 무관하게 같은 높이 (온담 수정요청 10/7 ②) */
+  .page-head { min-height: 300px; padding: 112px 0 32px; align-items: flex-start; } /* 모바일: 글을 위에 붙여 교구·프로그램 / 기관 문의 글 위치 동일 (온담 수정요청 10/8 주석 #5) */ /* 교구·프로그램 / 기관 문의 상단 높이 통일: 제목 줄 수와 무관하게 같은 높이 (온담 수정요청 10/7 ②) */
   .page-title { font-size: 26px; line-height: 1.3; }
   .page-sub { font-size: 15px; margin-top: 8px; }
   .story-hero { min-height: 0; padding: 112px 0 32px; }
