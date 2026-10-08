@@ -843,11 +843,14 @@ p { margin: 0; }
   background-size: cover;
   background-position: center 30%;
 }
-/* 기관 문의 하단 사업자 정보 (온담 수정요청 10/8 PC ④) — 가운데 모은 박스형 (주석 #6·#7) */
+/* 기관 문의 하단 사업자 정보 (온담 수정요청 10/8 PC ④) — 박스형, 위 문의 폼·상담 박스와 좌우 끝 맞춤, 오렌지 포인트 라인·아이콘 (주석 #6·#7·#8) */
 .sec-biz { background: var(--ivory-deep); padding: 0 0 72px; }
-.biz-box { max-width: 880px; margin: 0 auto; background: #FFFDF9; border: 1px solid var(--line); border-radius: var(--radius); padding: 30px 40px 32px; text-align: center; box-shadow: 0 10px 30px rgba(90, 66, 40, 0.06); }
-.biz-title { font-size: 17px; font-weight: 700; color: var(--brown-deep); margin-bottom: 18px; }
-.biz-list { margin: 0; display: flex; justify-content: center; flex-wrap: wrap; gap: 16px 52px; }
+.biz-box { margin: -46px 0 0; background: #FFFDF9; border: 1px solid var(--line); border-top: 3px solid var(--accent); border-radius: var(--radius); padding: 30px 40px 34px; text-align: center; box-shadow: 0 10px 30px rgba(90, 66, 40, 0.06); }
+.biz-title { font-size: 17px; font-weight: 700; color: var(--brown-deep); margin-bottom: 22px; }
+.biz-list { margin: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px 24px; }
+.biz-list > div { display: flex; flex-direction: column; align-items: center; }
+.biz-ico { display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px; margin-bottom: 10px; border-radius: 50%; background: rgba(224, 98, 26, 0.1); color: var(--accent); }
+.biz-ico svg { width: 21px; height: 21px; }
 .biz-list dt { font-size: 13.5px; font-weight: 600; letter-spacing: 0.02em; color: var(--muted); }
 .biz-list dd { margin: 5px 0 0; font-size: 16.5px; font-weight: 600; color: var(--ink); }
 .biz-list a { color: inherit; }
@@ -1009,8 +1012,10 @@ p { margin: 0; }
   .page-head-contact { background-image: linear-gradient(180deg, rgba(247, 241, 232, 0.94) 0%, rgba(247, 241, 232, 0.82) 70%, rgba(247, 241, 232, 0.4) 100%), url("../images/contact-head.jpg"); background-position: 62% center; }
   .page-head-program { background-image: linear-gradient(180deg, rgba(247, 241, 232, 0.94) 0%, rgba(247, 241, 232, 0.82) 70%, rgba(247, 241, 232, 0.4) 100%), url("../images/program-head.jpg"); background-position: 55% center; }
   .sec-biz { padding: 0 0 48px; }
-  .biz-box { padding: 22px 18px 24px; border-radius: 14px; }
-  .biz-list { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 16px; }
+  .biz-box { margin-top: -20px; padding: 22px 18px 24px; border-radius: 14px; }
+  .biz-list { grid-template-columns: 1fr 1fr; gap: 16px 12px; }
+  .biz-ico { width: 36px; height: 36px; margin-bottom: 8px; }
+  .biz-ico svg { width: 18px; height: 18px; }
   .biz-list dd { font-size: 15px; }
   .page-title { font-size: 26px; line-height: 1.3; }
   .page-sub { font-size: 15px; margin-top: 8px; }
