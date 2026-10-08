@@ -598,11 +598,11 @@ p { margin: 0; }
 .sec-cta .btn-primary { background: #FFFDF8; color: var(--brown-deep); --fill: #F1E6D4; }
 .sec-cta .btn-primary:hover { box-shadow: 0 14px 28px rgba(20, 12, 5, 0.3); }
 
-/* 교구·프로그램 목록 하단 밴드 「기관 상황에 맞춰 구성해 드릴까요?」: 아이보리 수채 잎사귀 배너 (온담 수정요청 10/6 주석 #8)
+/* 교구·프로그램 목록 하단 밴드 「기관 상황에 맞춰 구성해 드릴까요?」: 전통 퍼즐 교구 연출컷 (온담 수정요청 10/8 PC ②)
    밝은 배경이라 어두운 오버레이 없이 텍스트를 좌측에 둔다 */
 .sec-cta-consult { background: var(--ivory-deep); padding: 140px 0; }
 .sec-cta-consult::before {
-  background-image: linear-gradient(90deg, rgba(247, 241, 232, 0.55) 0%, rgba(247, 241, 232, 0) 48%), url("../images/cta-consult3.jpg");
+  background-image: linear-gradient(90deg, rgba(247, 241, 232, 0.55) 0%, rgba(247, 241, 232, 0) 48%), url("../images/cta-consult4.jpg");
   background-position: center;
 }
 .sec-cta-consult .cta-inner { flex-direction: column; align-items: flex-start; gap: 26px; }
@@ -804,7 +804,7 @@ p { margin: 0; }
   .cta-path .btn { display: block; text-align: center; }
   .sec-cta-consult { padding: 60px 0 150px; }
   .sec-cta-consult::before {
-    background-image: linear-gradient(180deg, rgba(247, 241, 232, 0.78) 0%, rgba(247, 241, 232, 0.1) 62%), url("../images/cta-consult3-m.jpg");
+    background-image: linear-gradient(180deg, rgba(247, 241, 232, 0.78) 0%, rgba(247, 241, 232, 0.1) 62%), url("../images/cta-consult4-m.jpg");
     background-position: center 70%;
   }
   .sec-cta-consult .cta-inner { gap: 16px; }
@@ -831,13 +831,31 @@ p { margin: 0; }
 /* 교구·프로그램 / 기관 문의 상단: 온담 이야기 히어로(.story-hero)와 동일한 높이·정렬 (온담 수정요청 10/7 ③) */
 .page-head { display: flex; align-items: flex-end; min-height: 65vh; }
 .page-head .wrap { width: 100%; }
+/* 기관 문의 상단: 스트링아트 연출컷 배경 (온담 수정요청 10/8 PC ③) — 글은 좌측 아이보리 면 위에, 색·레이아웃 유지 */
+.page-head-contact {
+  background-image: linear-gradient(90deg, rgba(247, 241, 232, 0.96) 0%, rgba(247, 241, 232, 0.72) 42%, rgba(247, 241, 232, 0.08) 72%), url("../images/contact-head.jpg");
+  background-size: cover;
+  background-position: right center;
+}
+/* 기관 문의 하단 사업자 정보 (온담 수정요청 10/8 PC ④) */
+.sec-biz { background: #FFFDF9; border-top: 1px solid var(--line); padding: 44px 0 48px; }
+.biz-title { font-size: 17px; font-weight: 700; color: var(--brown-deep); margin-bottom: 18px; }
+.biz-list { margin: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px 32px; }
+.biz-list dt { font-size: 13.5px; font-weight: 600; letter-spacing: 0.02em; color: var(--muted); }
+.biz-list dd { margin: 5px 0 0; font-size: 16.5px; font-weight: 600; color: var(--ink); }
+.biz-list a { color: inherit; }
+.biz-list a:hover { color: var(--accent); }
+/* 메인 홈 PC: 좌측 상단 로고 제거 (온담 수정요청 10/8 PC ①) — 헤더 높이는 유지 */
+@media (min-width: 1025px) {
+  body:not(.subpage) .gnb-logo { visibility: hidden; pointer-events: none; }
+}
 /* 온담 이야기: 풀블리드 사진 히어로 (메인 히어로와 같은 문법) */
 .story-hero {
   display: flex;
   align-items: flex-end;
   min-height: 65vh;
   padding: 150px 0 64px;
-  background-image: linear-gradient(rgba(44, 30, 18, 0.18), rgba(44, 30, 18, 0.52)), url("../images/story-hero.jpg");
+  background-image: linear-gradient(rgba(44, 30, 18, 0.18), rgba(44, 30, 18, 0.52)), url("../images/story-hero2.jpg");
   background-size: cover;
   background-position: center 62%;
 }
@@ -980,7 +998,11 @@ p { margin: 0; }
 }
 @media (max-width: 640px) {
   /* 서브페이지 폰 규격: 타이틀 밴드 상단 112px(헤더 아래) · 목록 2열 · 과정 2열 */
-  .page-head { min-height: 300px; padding: 112px 0 32px; align-items: flex-start; } /* 모바일: 글을 위에 붙여 교구·프로그램 / 기관 문의 글 위치 동일 (온담 수정요청 10/8 주석 #5) */ /* 교구·프로그램 / 기관 문의 상단 높이 통일: 제목 줄 수와 무관하게 같은 높이 (온담 수정요청 10/7 ②) */
+  .page-head { min-height: 300px; padding: 112px 0 32px; align-items: flex-start; }
+  .page-head-contact { background-image: linear-gradient(180deg, rgba(247, 241, 232, 0.94) 0%, rgba(247, 241, 232, 0.82) 70%, rgba(247, 241, 232, 0.4) 100%), url("../images/contact-head.jpg"); background-position: 62% center; }
+  .sec-biz { padding: 32px 0 36px; }
+  .biz-list { grid-template-columns: 1fr 1fr; gap: 14px 16px; }
+  .biz-list dd { font-size: 15px; } /* 모바일: 글을 위에 붙여 교구·프로그램 / 기관 문의 글 위치 동일 (온담 수정요청 10/8 주석 #5) */ /* 교구·프로그램 / 기관 문의 상단 높이 통일: 제목 줄 수와 무관하게 같은 높이 (온담 수정요청 10/7 ②) */
   .page-title { font-size: 26px; line-height: 1.3; }
   .page-sub { font-size: 15px; margin-top: 8px; }
   .story-hero { min-height: 0; padding: 112px 0 32px; }
