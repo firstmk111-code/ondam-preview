@@ -837,10 +837,17 @@ p { margin: 0; }
   background-size: cover;
   background-position: right center;
 }
-/* 기관 문의 하단 사업자 정보 (온담 수정요청 10/8 PC ④) */
-.sec-biz { background: #FFFDF9; border-top: 1px solid var(--line); padding: 44px 0 48px; }
+/* 교구·프로그램 상단: 자개 수납함 활동 연출컷 배경 (온담 수정요청 10/8 PC 추가) — 글은 좌측 아이보리 면 위에, 색·레이아웃 유지 */
+.page-head-program {
+  background-image: linear-gradient(90deg, rgba(247, 241, 232, 0.96) 0%, rgba(247, 241, 232, 0.72) 42%, rgba(247, 241, 232, 0.08) 72%), url("../images/program-head.jpg");
+  background-size: cover;
+  background-position: center 30%;
+}
+/* 기관 문의 하단 사업자 정보 (온담 수정요청 10/8 PC ④) — 가운데 모은 박스형 (주석 #6·#7) */
+.sec-biz { background: var(--ivory-deep); padding: 0 0 72px; }
+.biz-box { max-width: 880px; margin: 0 auto; background: #FFFDF9; border: 1px solid var(--line); border-radius: var(--radius); padding: 30px 40px 32px; text-align: center; box-shadow: 0 10px 30px rgba(90, 66, 40, 0.06); }
 .biz-title { font-size: 17px; font-weight: 700; color: var(--brown-deep); margin-bottom: 18px; }
-.biz-list { margin: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px 32px; }
+.biz-list { margin: 0; display: flex; justify-content: center; flex-wrap: wrap; gap: 16px 52px; }
 .biz-list dt { font-size: 13.5px; font-weight: 600; letter-spacing: 0.02em; color: var(--muted); }
 .biz-list dd { margin: 5px 0 0; font-size: 16.5px; font-weight: 600; color: var(--ink); }
 .biz-list a { color: inherit; }
@@ -1000,9 +1007,11 @@ p { margin: 0; }
   /* 서브페이지 폰 규격: 타이틀 밴드 상단 112px(헤더 아래) · 목록 2열 · 과정 2열 */
   .page-head { min-height: 300px; padding: 112px 0 32px; align-items: flex-start; }
   .page-head-contact { background-image: linear-gradient(180deg, rgba(247, 241, 232, 0.94) 0%, rgba(247, 241, 232, 0.82) 70%, rgba(247, 241, 232, 0.4) 100%), url("../images/contact-head.jpg"); background-position: 62% center; }
-  .sec-biz { padding: 32px 0 36px; }
-  .biz-list { grid-template-columns: 1fr 1fr; gap: 14px 16px; }
-  .biz-list dd { font-size: 15px; } /* 모바일: 글을 위에 붙여 교구·프로그램 / 기관 문의 글 위치 동일 (온담 수정요청 10/8 주석 #5) */ /* 교구·프로그램 / 기관 문의 상단 높이 통일: 제목 줄 수와 무관하게 같은 높이 (온담 수정요청 10/7 ②) */
+  .page-head-program { background-image: linear-gradient(180deg, rgba(247, 241, 232, 0.94) 0%, rgba(247, 241, 232, 0.82) 70%, rgba(247, 241, 232, 0.4) 100%), url("../images/program-head.jpg"); background-position: 55% center; }
+  .sec-biz { padding: 0 0 48px; }
+  .biz-box { padding: 22px 18px 24px; border-radius: 14px; }
+  .biz-list { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 16px; }
+  .biz-list dd { font-size: 15px; }
   .page-title { font-size: 26px; line-height: 1.3; }
   .page-sub { font-size: 15px; margin-top: 8px; }
   .story-hero { min-height: 0; padding: 112px 0 32px; }
