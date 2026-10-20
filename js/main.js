@@ -172,8 +172,31 @@
   if (!sel) return;
   var t = new URLSearchParams(location.search).get("type");
   if (t && sel.querySelector('option[value="' + t + '"]')) sel.value = t;
+  // 문의 접수: Web3Forms로 전송 → ondamsenior@naver.com 메일 수신 (온담 최종수정 10/20 ④)
   var form = document.getElementById("contactForm");
-  form.addEventListener("submit", function (e) { e.preventDefault(); });
+  var note = document.getElementById("formNote");
+  var btn = form.querySelector(".form-submit");
+  var noteDefault = note ? note.textContent : "";
+  function say(msg, cls) { if (!note) return; note.textContent = msg; note.className = "form-note" + (cls ? " " + cls : ""); }
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var key = form.getAttribute("data-key");
+    if (!key || key === "YOUR_WEB3FORMS_KEY") { say("문의 접수 연결이 아직 완료되지 않았습니다. 하단 연락처로 문의해 주세요.", "is-err"); return; }
+    var data = new FormData(form);
+    data.append("access_key", key);
+    data.append("from_name", "온담 홈페이지 문의");
+    var typeSel = form.querySelector("#contactType");
+    if (typeSel) data.set("type", typeSel.options[typeSel.selectedIndex].text);
+    btn.disabled = true; say("보내는 중입니다…");
+    fetch(form.action, { method: "POST", body: data, headers: { "Accept": "application/json" } })
+      .then(function (r) { return r.json(); })
+      .then(function (res) {
+        if (res && res.success) { form.reset(); say("문의가 접수되었습니다. 담당자가 확인 후 연락드리겠습니다.", "is-ok"); }
+        else { say("전송에 실패했습니다. 잠시 후 다시 시도하시거나 하단 연락처로 문의해 주세요.", "is-err"); }
+      })
+      .catch(function () { say("전송에 실패했습니다. 잠시 후 다시 시도하시거나 하단 연락처로 문의해 주세요.", "is-err"); })
+      .then(function () { btn.disabled = false; });
+  });
 })();
 
 // 온담 이야기: 서클 안 슬라이드 (4.5초 간격, 밀기) + 점 표시·클릭 + 스와이프/드래그 (온담 수정요청 10/6 주석 #11)
